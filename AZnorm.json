@@ -1,0 +1,32 @@
+{
+  "pipeline": {
+    "name": "AZnorm"
+  },
+  "transform": {
+    "image": "bhklab/pharmacogx:v5",
+    "cmd": [
+      "Rscript", 
+      "/pfs/AZNormalize/normalizeAZ.R"]
+    },
+
+  "resource_requests": {
+    "memory": "1.0G"
+  },
+  "input": {
+    "cross": [
+      {
+        "git": {
+          "url": "https://github.com/BHKLAB-Pachyderm/AZNormalize.git",
+          "name": "AZNormalize",
+          "branch": "master"
+        }
+      },
+      {
+        "pfs": {
+          "repo": "az_input",
+          "glob": "/"
+        }
+      } 
+    ]
+  }
+}
